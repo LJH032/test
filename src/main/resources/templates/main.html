@@ -16,7 +16,7 @@
         <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
         </div>
     </div>
-    <img style="width: 276px; height: 76px; left: 133px; top: 132.20px; position: absolute" src="images/알려드림 로고.png" />
+    <img style="width: 276px; height: 76px; left: 133px; top: 132.20px; position: absolute" src="images/알려드림 로고.png" />
     <div style="width: 384px; height: 448px; left: 939px; top: 176.20px; position: absolute">
         <div style="width: 384px; height: 446px; left: 0px; top: 2px; position: absolute; background: white; border-radius: 10px"></div>
         <button style="width: 136px; height: 38px; padding-left: 26px; padding-right: 26px; padding-top: 5px; padding-bottom: 5px; left: 105px; top: 370px; position: absolute; background: #DDDDDD; border-radius: 20px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
@@ -58,7 +58,7 @@
             formData.append("file", file);
 
             // 서버로 POST 요청 보내기
-            fetch("http://localhost:8080/api/uploadImage", {
+            fetch("http://localhost:8080/api/upload", {
                 method: "POST",
                 body: formData
             })
