@@ -5,91 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Learning Pill Recognition</title>
     <link rel="stylesheet" href="css/main.css">
-
 </head>
 <body>
   <div style="width: 100%; height: 100%; position: relative; background: white">
     <div style="width: 1440px; height: 696px; left: 0px; top: 0.20px; position: absolute; background: #0A84FF"></div>
-    <div style="width: 587px; left: 133px; top: 322.20px; position: absolute; color: white; font-size: 22px; font-family: Roboto; font-weight: 400; word-wrap: break-word">알약을 복용하는 사람들의 약물오남용이 증가함에 따라 알약찾기 프로그램을 통해 이를 미연에 방지하고자 함</div>
-    <div style="left: 133px; top: 249.20px; position: absolute; color: white; font-size: 36px; font-family: Roboto; font-weight: 700; word-wrap: break-word">딥러닝 기반 알약 인식 및 정보제공 서비스</div>
-    <div style="left: 32px; top: 216.20px; position: absolute">
-        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-        </div>
-    </div>
+    <div style="width: 587px; left: 133px; top: 322.20px; position: absolute; color: white; font-size: 22px; font-family: Roboto; font-weight: 400; word-wrap: break-word">알약을 복원하는 사람들의 약물오난용이 증가함에 따른 알약찾기 프로그램을 통해 이를 미연에 보장하고자 함</div>
+    <div style="left: 133px; top: 249.20px; position: absolute; color: white; font-size: 36px; font-family: Roboto; font-weight: 700; word-wrap: break-word">디플러링 기반 알약 인식 및 정보제공 서비스</div>
     <img style="width: 276px; height: 76px; left: 133px; top: 132.20px; position: absolute" src="images/알려드림 로고.png" />
     <div style="width: 384px; height: 448px; left: 939px; top: 176.20px; position: absolute">
         <div style="width: 384px; height: 446px; left: 0px; top: 2px; position: absolute; background: white; border-radius: 10px"></div>
-	<button 
-   	    style="width: 136px; height: 38px; padding-left: 26px; padding-right: 26px; padding-top: 5px; padding-bottom: 5px; left: 105px; top: 370px; position: absolute; background: #DDDDDD; border-radius: 20px; justify-content: center; align-items: center; gap: 10px; display: inline-flex" 
-  		th:onclick="|location.href='@{/result}'|">
-    	검색</button>
 
-        </button>
-        <form action="/api/savePillData" method="POST" enctype="multipart/form-data"></form>
         <div style="left: 37px; top: 25px; position: absolute; color: black; font-size: 24px; font-family: Roboto; font-weight: 700; word-wrap: break-word">알약 검색</div>
-        <div style="left: 37px; top: 93px; position: absolute; color: black; font-size: 18px; font-family: Roboto; font-weight: 700; word-wrap: break-word">  <label for="form">알약의 제형을 선택해주세요</label>
-          <select class=list1 name="form" id="form">
-            <option value="제형선택">제형 선택</option>
-            <option value="연질캡슐">연질캡슐</option>
-            <option value="정제류">정제류</option>
-            <option value="경질캡슐">경질캡슐</option>
-            <option value="기타">기타</option>
-          </select>
         
-        </div>
-        <div style="left: 37px; top: 187px; position: absolute; color: black; font-size: 18px; font-family: Roboto; font-weight: 700; word-wrap: break-word"><label for="shape">알약의 모양을 선택해주세요</label>
-          <select class="list2" name="shape" id="shape">
-            <option value="모형 선택">모형 선택</option>
-            <option value="원형">원형</option>
-            <option value="반원형">반원형</option>
-            <option value="삼각형">삼각형</option>
-            <option value="다각형">다각형</option>
-          </select>
-        </div>
+        <!-- 알약 사진 업로드 포토즈 -->
         <div style="left: 37px; top: 279px; position: absolute; color: black; font-size: 18px; font-family: Roboto; font-weight: 700; word-wrap: break-word">
-  			<label for="pillImage">알약 사진을 첨부해주세요</label>
-   			<form id="uploadForm" enctype="multipart/form-data">
-       	 	<input type="file" id="fileInput" name="file" accept="image/*" required>
-        	<button type="button" onclick="uploadImage()">업로드</button>
-    		</form>
-		</div>
-
-	<script>
-    	function uploadImage() {
-       	 const fileInput = document.getElementById('fileInput');
-       	 const file = fileInput.files[0];
-
-      	  // 파일이 선택되지 않았을 때 경고창을 띄웁니다.
-       	 if (!file) {
-      	      alert("파일을 선택해주세요.");
-      	      return;
-     	   }
-
-       		 // FormData 객체를 생성하고 파일을 추가
-     	   const formData = new FormData();
-     	   formData.append("file", file);
-
-      	  // 서버로 POST 요청 보내기
-      	  fetch("http://localhost:8080/api/upload", {
-          	  method: "POST",
-        	    body: formData
-      	  })
-        	.then(response => response.text())
-       	 .then(data => {
-       	     alert("응답: " + data);
-      	  })
-       	 .catch(error => {
-       	     console.error("업로드 중 오류 발생:", error);
-      	  });
-   	 }
-	</script>
-
+            <label for="pillImage">알약 사진을 첨부해주세요</label>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="fileInput" name="image" accept="image/*" required>
+                <button type="button" onclick="uploadImage()">업로드</button>
+            </form>
         </div>
-        <div style="left: 36px; top: 128px; position: absolute; background: #EDEDED">
-        </div>
-        <div style="left: 36px; top: 222px; position: absolute"></div>
-        <div style="width: 81px; height: 24px; left: 36px; top: 316px; position: absolute"></div>
+
+        <script>
+        	function uploadImage() {
+            	const fileInput = document.getElementById('fileInput');
+            	const file = fileInput.files[0];
+
+            	if (!file) {
+                	alert("파일을 선택해주세요.");
+                	return;
+            	}
+
+            	const formData = new FormData();
+            	formData.append("image", file);
+
+            	// Spring Boot 서버로 이미지 업로드 요청
+				fetch("http://localhost:8080/api/images/upload", {
+    				method: "POST",
+    				body: formData
+				})
+				.then(response => {
+    				if (!response.ok) {
+        				throw new Error("서버 오류 발생. 상태 코드: " + response.status);
+    				}
+    				return response.json();
+				})
+				.then(data => {
+    				if (data.error) {
+        				alert("오류: " + data.error);
+    				} else {
+        				// 데이터 확인 후 저장
+        				console.log("Saved data to localStorage: ", data);
+        				localStorage.setItem('pillData', JSON.stringify(data));
+        				window.location.href = "/result";  // URL을 /result로 수정하여 컨트롤러가 처리하게 함
+    				}
+				})
+				.catch(error => {
+    				console.error("업로드 중 오류 발생:", error);
+    				alert("업로드 중 오류가 발생했습니다. 콘솔을 확인해주세요.");
+				});
+        	}
+        </script>
     </div>
-</div>
+  </div>
 </body>
 </html>

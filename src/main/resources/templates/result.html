@@ -1,51 +1,49 @@
-<div style="width: 1440px; height: 696px; position: relative; background: white">
-	
-	<div style="width: 581px; padding: 10px; left: 641px; top: 28px; position: absolute;
-	justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
-	  <div style="color: black; font-size: 45px; font-family: Poppins; font-weight: 500;
-	  word-wrap: break-word">알약명칭
-	  </div>
-	</div>
-	<div style="width: 1148px; height: 263px; padding-left: 30px; padding-right: 30px;
-	 	padding-top: 33px; padding-bottom: 33px; left: 154px; top: 790px; position: absolute;
-	  	background: #F5F5F5; border-radius: 20px; justify-content: flex-start; align-items: flex-start;
-	  	gap: 10px; display: inline-flex">
-	  	<div style="color: black; font-size: 25px; font-family: Poppins; font-weight: 400;
-	  		word-wrap: break-word">검색결과와 비슷한 약</div>
-	</div>
-	<div style="width: 280px; height: 200px; padding-left: 33px; padding-right: 33px;
-		padding-top: 30px; padding-bottom: 30px; left: 654px; top: 135px; position: absolute;
-		background: #F5F5F5; border-radius: 20px; flex-direction: column; justify-content: flex-start;
-		align-items: flex-start; gap: 8px; display: inline-flex">
-	  	<div style="width: 133px; height: 52px; color: black; font-size: 25px; font-family: Poppins;
-	  	 	font-weight: 400; word-wrap: break-word">성분 · 함량</div>
-	  	<div style="width: 235px; height: 45px; color: black; font-size: 16px; font-family: Poppins;
-	  		font-weight: 400; word-wrap: break-word">-----------------</div>
-	</div>
-	<div style="width: 280px; height: 200px; padding-left: 33px; padding-right: 33px; padding-top: 30px;
-	 	padding-bottom: 30px; left: 1008px; top: 135px; position: absolute; background: #F5F5F5;
-	 	border-radius: 20px; flex-direction: column; justify-content: flex-start;
-	 	align-items: flex-start; gap: 8px; display: inline-flex">
-	  	<div style="width: 56px; height: 52px; color: black; font-size: 25px; font-family: Poppins;
-	  		font-weight: 400; word-wrap: break-word">효능</div>
-	  <div style="width: 235px; height: 45px; color: black; font-size: 16px; font-family: Poppins;
-	  	font-weight: 400; word-wrap: break-word">-----------------</div>
-	</div>
-	<div style="width: 640px; height: 191px; padding-left: 33px; padding-right: 33px; padding-top: 30px;
-		padding-bottom: 30px; left: 654px; top: 462px; position: absolute; background: #F5F5F5;
-		border-radius: 20px; overflow: hidden; justify-content: flex-start; align-items: flex-start;
-		gap: 10px; display: inline-flex">
-	  <div style="color: black; font-size: 25px; font-family: Poppins; font-weight: 400;
-	  	word-wrap: break-word">사용상의 주의사항</div>
-	</div>
-	<div style="width: 400px; height: 191px; padding-left: 33px; padding-right: 33px; padding-top: 30px;
-		padding-bottom: 30px; left: 148px; top: 463px; position: absolute; background: #F5F5F5;
-		border-radius: 20px; overflow: hidden; justify-content: flex-start; align-items: flex-start;
-		gap: 10px; display: inline-flex">
-		<div style="width: 133px; color: black; font-size: 25px; font-family: Poppins; font-weight: 400;
-			line-height: 37.53px; word-wrap: break-word">용법 · 용량
-		</div>
-	</div>
-	<img style="width: 151px; height: 41px; left: 150px; top: 55.20px;
-		position: absolute" src="images/알려드림 로고BL.png" />
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>검색 결과</title>
+    <link rel="stylesheet" href="css/result.css">
+</head>
+<body>
+    <div style="width: 1440px; height: 696px; position: relative; background: white">
+        <div style="width: 581px; padding: 10px; left: 641px; top: 28px; position: absolute; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
+            <div id="pillName" style="color: black; font-size: 45px; font-family: Poppins; font-weight: 500; word-wrap: break-word">알약명칭</div>
+        </div>
+        <!-- 알약 정보가 표시될 영역 -->
+        <div id="pillInfo" style="width: 1148px; height: 263px; padding-left: 30px; padding-right: 30px; padding-top: 33px; padding-bottom: 33px; left: 154px; top: 790px; position: absolute; background: #F5F5F5; border-radius: 20px;">
+            <!-- JavaScript를 통해 Pill 정보 삽입 -->
+        </div>
+        <script>
+            // 결과 데이터를 표시하는 함수
+            function displayResult(data) {
+                document.getElementById('pillName').textContent = data.drugName;
+                document.getElementById('pillInfo').innerHTML = `
+                    <div>제조 형태: ${data.formulation}</div>
+                    <div>색상: ${data.color}</div>
+                    <div>분리선: ${data.separatingLine}</div>
+                    <div>효능: ${data.efficacy}</div>
+                    <div>사용 방법: ${data.usageMethod}</div>
+                    <div>사용상의 죄의사항: ${data.precautions}</div>
+                    <div>위험: ${data.warning}</div>
+                    <div>사이드 사례: ${data.sideEffects}</div>
+                    <div>원래 도장 방법: ${data.storageMethod}</div>
+                `;
+            }
+
+            // 데이터 가져오기 (로컴 저장된 데이터 사용)
+            document.addEventListener("DOMContentLoaded", function() {
+    			const resultData = JSON.parse(localStorage.getItem('pillData'));
+    		if (resultData) {
+        		console.log("Loaded data from localStorage: ", resultData);
+        		displayResult(resultData);
+    		} else {
+        		console.error("No data found in localStorage for 'pillData'");
+    		}
+		});
+
+        </script>
+    </div>
+</body>
+</html>

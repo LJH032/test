@@ -6,14 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class WebController {
 
-
     @GetMapping("/")
     public String mainPage() {
-        return "main";  // main.html 페이지를 반환합니다.
+        return "main";  // resources/templates/main.html 파일을 렌더링
     }
 
     @GetMapping("/result")
     public String resultPage() {
-        return "result";  // result.html 페이지를 반환합니다.
+        return "result";  // src/main/resources/templates/result.html을 반환
     }
 }
