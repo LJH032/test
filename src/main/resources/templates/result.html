@@ -7,43 +7,69 @@
     <link rel="stylesheet" href="css/result.css">
 </head>
 <body>
-    <div style="width: 1440px; height: 696px; position: relative; background: white">
-        <div style="width: 581px; padding: 10px; left: 641px; top: 28px; position: absolute; justify-content: flex-start; align-items: center; gap: 10px; display: inline-flex">
-            <div id="pillName" style="color: black; font-size: 45px; font-family: Poppins; font-weight: 500; word-wrap: break-word">알약명칭</div>
+    <div style="width: 1440px; height: 800px; position: relative; background: white; padding: 20px;">
+        <!-- 알약 이미지 영역 -->
+        <div style="width: 400px; height: 300px; position: absolute; left: 50px; top: 50px;">
+            <img id="pillImage" src="" alt="알약 이미지" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
         </div>
-        <!-- 알약 정보가 표시될 영역 -->
-        <div id="pillInfo" style="width: 1148px; height: 263px; padding-left: 30px; padding-right: 30px; padding-top: 33px; padding-bottom: 33px; left: 154px; top: 790px; position: absolute; background: #F5F5F5; border-radius: 20px;">
-            <!-- JavaScript를 통해 Pill 정보 삽입 -->
+
+        <!-- 알약명칭 영역 -->
+        <div style="width: 600px; padding: 10px; left: 500px; top: 50px; position: absolute;">
+            <div id="pillName" style="color: black; font-size: 45px; font-family: Poppins; font-weight: 500; word-wrap: break-word">가장 확인된 제품명</div>
         </div>
+
+        <!-- 알약 정보 영역 -->
+        <div style="width: 1148px; height: auto; padding: 30px; left: 50px; top: 400px; position: absolute; background: #F5F5F5; border-radius: 20px;">
+            <div id="pillInfo" style="font-size: 18px; font-family: Poppins; line-height: 1.6;">
+                <!-- JavaScript를 통해 Pill 정보 삽입 -->
+            </div>
+        </div>
+
         <script>
             // 결과 데이터를 표시하는 함수
             function displayResult(data) {
-                document.getElementById('pillName').textContent = data.drugName;
+                // 알약명칭 설정
+                document.getElementById('pillName').textContent = data.drug_name;
+                
+                // 이미지가 있을 경우 설정
+                if (data.image) {
+                    document.getElementById('pillImage').src = `data:image/jpeg;base64,${data.image}`;
+                }
+
+                // 알약 정보 설정
                 document.getElementById('pillInfo').innerHTML = `
-                    <div>제조 형태: ${data.formulation}</div>
-                    <div>색상: ${data.color}</div>
-                    <div>분리선: ${data.separatingLine}</div>
-                    <div>효능: ${data.efficacy}</div>
-                    <div>사용 방법: ${data.usageMethod}</div>
-                    <div>사용상의 죄의사항: ${data.precautions}</div>
-                    <div>위험: ${data.warning}</div>
-                    <div>사이드 사례: ${data.sideEffects}</div>
-                    <div>원래 도장 방법: ${data.storageMethod}</div>
+                    <div><strong>성별 ▸</strong> ${data.formulation}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>색상 ▸</strong> ${data.color}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>분리선 ▸</strong> ${data.separating_line || '해당 없음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>효능 ▸</strong> ${data.efficacy || '정의되지 않음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>사용 방법 ▸</strong> ${data.usage_method || '정의되지 않음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>사용상의 주의사항 ▸</strong> ${data.precautions || '정의되지 않음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>위험 ▸</strong> ${data.warning || '정의되지 않음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>사이드 사례 ▸</strong> ${data.side_effects || '정의되지 않음'}</div>
+                    <div style="margin-bottom: 10px;"></div>
+                    <div><strong>원래 도장 방법 ▸</strong> ${data.storage_method || '정의되지 않음'}</div>
                 `;
             }
 
-            // 데이터 가져오기 (로컴 저장된 데이터 사용)
+            // 데이터 가져오기 (로컬 저장된 데이터 사용)
             document.addEventListener("DOMContentLoaded", function() {
-    			const resultData = JSON.parse(localStorage.getItem('pillData'));
-    		if (resultData) {
-        		console.log("Loaded data from localStorage: ", resultData);
-        		displayResult(resultData);
-    		} else {
-        		console.error("No data found in localStorage for 'pillData'");
-    		}
-		});
-
+                const resultData = JSON.parse(localStorage.getItem('pillData'));
+                if (resultData) {
+                    console.log("Loaded data from localStorage: ", resultData);
+                    displayResult(resultData);
+                } else {
+                    console.error("No data found in localStorage for 'pillData'");
+                }
+            });
         </script>
     </div>
 </body>
 </html>
+
