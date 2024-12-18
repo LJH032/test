@@ -28,7 +28,7 @@ public class ImageController {
             logger.info("Received image file: {}", imageFile.getOriginalFilename());
 
             // Flask 서버 URL 정의
-            String flaskUrl = "http://localhost:5000/predict";  // Flask 서버의 /predict 엔드포인트
+            String flaskUrl = "";  // Flask 서버의 /predict 엔드포인트
 
             // Flask 서버로 요청을 보낼 때 사용할 헤더 설정
             HttpHeaders headers = new HttpHeaders();
